@@ -1,30 +1,20 @@
-from modelos.livro import Livro
-from modelos.usuario import Usuario
-from modelos.biblioteca import Biblioteca
-import os
 
+from modelos.biblioteca import Biblioteca
+from interface.menus import executar_menu
+from dados import acervo_inicial
+
+def inicializar_sistema():
+    sistema=Biblioteca()
+    for livro in acervo_inicial:
+        sistema.cadastrar_livro(livro['titulo'], livro['autor'], livro['ano'])
+
+    return sistema
 
 def main():
+
+    minha_biblioteca= inicializar_sistema()
+    executar_menu(minha_biblioteca)
     
-    print(f'𝚂𝚒𝚜𝚝𝚎𝚖𝚊 𝙱𝚒𝚋𝚕𝚒𝚘𝚝𝚎𝚌𝚊')
-    print('')
-    minha_biblioteca=Biblioteca()
-
-    print(f'1. Cadastrar Usuário:\n2.Cadastrar Livro:')
-    print('')
-     
-    entrada=input('Digite um número para o seu respectivo comando:')
-
-    if entrada == '1':
-        nome=input('Digite seu nome:')
-        telefone=input('Digite seu telefone:')
-        minha_biblioteca.cadastrar_usario(nome, telefone)
-        
-
-
-
-
-
 if __name__ == "__main__":
     main()
 

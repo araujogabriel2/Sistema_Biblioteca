@@ -1,0 +1,22 @@
+acervo_inicial = [
+    {"titulo": "Dom Casmurro", "autor": "Machado de Assis", "ano": 1899},
+    {"titulo": "O Pequeno Príncipe", "autor": "Antoine de Saint-Exupéry", "ano": 1943},
+    {"titulo": "1984", "autor": "George Orwell", "ano": 1949},
+    {"titulo": "Harry Potter e a Pedra Filosofal", "autor": "J.K. Rowling", "ano": 1997},
+    {"titulo": "O Senhor dos Anéis: A Sociedade do Anel", "autor": "J.R.R. Tolkien", "ano": 1954},
+    {"titulo": "A Metamorfose", "autor": "Franz Kafka", "ano": 1915},
+    {"titulo": "Grande Sertão: Veredas", "autor": "Guimarães Rosa", "ano": 1956},
+    {"titulo": "Vidas Secas", "autor": "Graciliano Ramos", "ano": 1938},
+    {"titulo": "O Alquimista", "autor": "Paulo Coelho", "ano": 1988},
+    {"titulo": "Capitães da Areia", "autor": "Jorge Amado", "ano": 1937},
+    {"titulo": "A Hora da Estrela", "autor": "Clarice Lispector", "ano": 1977},
+    {"titulo": "Orgulho e Preconceito", "autor": "Jane Austen", "ano": 1813},
+    {"titulo": "Dom Quixote", "autor": "Miguel de Cervantes", "ano": 1605},
+    {"titulo": "It: A Coisa", "autor": "Stephen King", "ano": 1986},
+    {"titulo": "O Cortiço", "autor": "Aluísio Azevedo", "ano": 1890},
+    {"titulo": "Iracema", "autor": "José de Alencar", "ano": 1865},
+    {"titulo": "Frankenstein", "autor": "Mary Shelley", "ano": 1818},
+    {"titulo": "Drácula", "autor": "Bram Stoker", "ano": 1897},
+    {"titulo": "A Revolução dos Bichos", "autor": "George Orwell", "ano": 1945},
+    {"titulo": "O Código Da Vinci", "autor": "Dan Brown", "ano": 2003}
+]
