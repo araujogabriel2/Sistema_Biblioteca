@@ -55,11 +55,19 @@ class Biblioteca:
 
     def devolucao(self, livro, usuario):
 
-        for contrato in usuario.historico:
-            if contrato.livro == livro:
-                livro.disponivel = True
-                print(f"Livro: {livro.titulo} devolvido com sucesso!")
-                break
+        if usuario in self.usuarios:
+            for contrato in usuario.historico:
+                if contrato.livro == livro:
+                    livro.disponivel = True
+                    print(f"Livro: {livro.titulo} devolvido com sucesso!")
+                    break
+                else:
+                    print('Livro já devolvido ou não foi alugado por este usuário.')
+        else:
+            print('ID não cadastrado!')
+            nome=input('Digite seu nome:')
+            tel=input('Digite seu telefone:')
+            self.cadastrar_usuario(nome, tel)
 
     def emprestimos_ativos(self):
 
