@@ -69,12 +69,16 @@ class Biblioteca:
             tel=input('Digite seu telefone:')
             self.cadastrar_usuario(nome, tel)
 
-    def emprestimos_ativos(self):
+    def emprestimos_ativos(self, id_usuario):
+        usuario_encontrado=self.buscar_usuario_id(id_usuario)
 
-        print("Lista de emprestimos ativos:")
-        for emprestimo in self.emprestimos:
-            print(emprestimo)
+        if usuario_encontrado:
+            print(f'Histórico de {usuario_encontrado.nome}')
 
+            for emprestimo in usuario_encontrado.historico:
+                print(emprestimo)
+
+       
 
     def verificador_usuario(self, id):
         for usuario in self.usuarios:

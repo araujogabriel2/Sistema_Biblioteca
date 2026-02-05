@@ -22,11 +22,18 @@ def interface_devolucao(sistema):
     livro_devolucao=sistema.buscar_livro(livro)
     usuario=sistema.buscar_usuario_id(id)
     sistema.devolucao(livro_devolucao, usuario)
+
+def exibir_emprestimos_ativos(sistema):
+    print('--- EMPRÉSTIMOS ATIVOS ---')
+    id_digitado=input('Digite o ID:')
+    sistema.emprestimos_ativos(id_digitado)
+
     
 menus={
     "1":interface_cadastrar_usuario,
     "2":interface_locacao,
-    "3":interface_devolucao
+    "3":interface_devolucao,
+    "4":exibir_emprestimos_ativos
 }
 
 def executar_menu(sistema):
@@ -34,6 +41,7 @@ def executar_menu(sistema):
         print('1. Cadastrar usuário')
         print('2. Locar Livro')
         print('3. Devolução')
+        print('4. Exibir Empréstimos Ativos')
 
 
         opcao=input('Escolha uma opção:')

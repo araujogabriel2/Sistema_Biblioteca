@@ -6,9 +6,9 @@ class Usuario:
         self.historico = []
 
     def __str__(self):
-        return f"Nome: {self.nome} - ID:{self.id}"
+        return f"Nome: {self.nome}"
 
     def exibir_livros_alugados(self):
-        print(f"Lista de livros alugados - Nome: {self.nome}")
+        print(f"Lista de livros alugados - Nome: {self.nome} - ID: {self.id_usuario}")
         for livro in self.historico:
             print(livro)
