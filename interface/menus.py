@@ -1,32 +1,55 @@
 
 def interface_cadastrar_usuario(sistema):
     print('---CADASTRO USUÁRIO ---')
-    nome=input('Digite seu nome:')
-    telefone=input('Digite seu telefone:')
-    sistema.cadastrar_usuario(nome, telefone)
+    try:
+        nome=input('Digite seu nome:')
+
+        if not nome.isalpha():
+            print('ERRO: O nome deve conter apenas letras.')
+        else:
+            telefone=int(input('Digite seu telefone:'))
+            sistema.cadastrar_usuario(nome, telefone)
+
+    except ValueError:
+        print('O telefone deve conter apenas números.')
 
 def interface_locacao(sistema):
     print('--- LOCAÇÃO LIVRO ---')
-    livro_locacao=input('Digite o nome do livro:')
-    id=input('Digite o seu ID:')
 
-    livro_encontrado=sistema.buscar_livro(livro_locacao)
-    usuario=sistema.buscar_usuario_id(id)
-    sistema.locar(livro_encontrado, usuario)
+    try:
+        
+        livro_locacao=input('Digite o nome do livro:')
+        id=int(input('Digite o seu ID:'))
+        livro_encontrado=sistema.buscar_livro(livro_locacao)
+        usuario=sistema.buscar_usuario_id(id)
+        sistema.locar(livro_encontrado, usuario)
+
+    except ValueError:
+        print('ERRO: ID deve conter números.')
 
 def interface_devolucao(sistema):
     print('--- DEVOLUÇÃO LIVRO ---')
-    livro=input('Digite o nome do livro:')
-    id=input('Digite o seu ID:')
 
-    livro_devolucao=sistema.buscar_livro(livro)
-    usuario=sistema.buscar_usuario_id(id)
-    sistema.devolucao(livro_devolucao, usuario)
+    try:
+
+        livro=input('Digite o nome do livro:')
+        id=int(input('Digite o seu ID:'))
+        livro_devolucao=sistema.buscar_livro(livro)
+        usuario=sistema.buscar_usuario_id(id)
+        sistema.devolucao(livro_devolucao, usuario)
+
+    except ValueError:
+        print('ERRO: ID deve conter apenas números.')
 
 def exibir_emprestimos_ativos(sistema):
     print('--- EMPRÉSTIMOS ATIVOS ---')
-    id_digitado=input('Digite o ID:')
-    sistema.emprestimos_ativos(id_digitado)
+    try:
+
+        id_digitado=int(input('Digite o ID:'))
+        sistema.emprestimos_ativos(id_digitado)
+     
+    except ValueError:
+        print('ERRO: ID deve conter apenas números.')
 
     
 menus={
