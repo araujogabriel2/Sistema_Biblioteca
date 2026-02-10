@@ -2,7 +2,9 @@
 from modelos.biblioteca import Biblioteca
 from interface.menus import executar_menu
 from dados import acervo_inicial
-import os 
+import os
+import json
+
 
 def inicializar_sistema():
     sistema=Biblioteca()
