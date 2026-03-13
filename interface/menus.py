@@ -1,57 +1,95 @@
+from modelos.biblioteca import Biblioteca
+import os
 
-def interface_cadastrar_usuario(sistema):
+def clear():
+    os.system('cls')
+
+def interface_cadastrar_usuario(sistema: Biblioteca):
+    clear()
     print('---CADASTRO USUÁRIO ---')
-    try:
+
+    while True:
         nome=input('Digite seu nome:')
+        telefone =input('Digite seu número de telefone, com o (DDD):')
 
-        if not nome.isalpha():
+        if not nome.replace(' ', '').isalpha():
             print('ERRO: O nome deve conter apenas letras.')
-        else:
-            telefone=int(input('Digite seu telefone:'))
-            sistema.cadastrar_usuario(nome, telefone)
+            continue
+        if not telefone.isdigit():
+            print('ERRO: Digite apenas números!')
+            continue
+        if len(telefone) < 10 or len(telefone) > 11:
+            print('Erro: O telefone deve ter 10 (residêncial) ou 11 (móvel) dígitos, contando com o DDD!')
+            continue
 
-    except ValueError:
-        print('O telefone deve conter apenas números.')
+        break
 
-def interface_locacao(sistema):
-    print('--- LOCAÇÃO LIVRO ---')
-
-    try:
+    msg=sistema.cadastrar_usuario(nome, telefone)
+    print(msg)
         
-        livro_locacao=input('Digite o nome do livro:')
-        id=int(input('Digite o seu ID:'))
-        livro_encontrado=sistema.buscar_livro(livro_locacao)
-        usuario=sistema.buscar_usuario_id(id)
-        sistema.locar(livro_encontrado, usuario)
 
-    except ValueError:
-        print('ERRO: ID deve conter números.')
-
-def interface_devolucao(sistema):
-    print('--- DEVOLUÇÃO LIVRO ---')
-
-    try:
-
-        livro=input('Digite o nome do livro:')
-        id=int(input('Digite o seu ID:'))
-        livro_devolucao=sistema.buscar_livro(livro)
-        usuario=sistema.buscar_usuario_id(id)
-        sistema.devolucao(livro_devolucao, usuario)
-
-    except ValueError:
-        print('ERRO: ID deve conter apenas números.')
-
-def exibir_emprestimos_ativos(sistema):
-    print('--- EMPRÉSTIMOS ATIVOS ---')
-    try:
-
-        id_digitado=int(input('Digite o ID:'))
-        sistema.emprestimos_ativos(id_digitado)
-     
-    except ValueError:
-        print('ERRO: ID deve conter apenas números.')
-
+def interface_locacao(sistema: Biblioteca):
+    clear()
+    print('----------------- LOCAÇÃO LIVRO ------------------')
+    print('EM DESTAQUE:')
+    acervo = sistema.listar_livros()
     
+    
+    for livro in acervo:
+        print(f"ID: {livro.id_livro} | Livro: {livro.titulo} | Autor: {livro.autor}")
+    
+    print('----------------------------------------------------')
+
+    while True:
+        usuario_id = input('Digite o ID do usuário:')
+        livro_id = input('Digite o ID do livro:')
+
+        if not usuario_id.isdigit() or not livro_id.isdigit():
+            print('ERRO: Digite apenas números para os IDs!')
+            continue
+
+        break
+
+    msg = sistema.alugar_livro(int(usuario_id), int(livro_id))
+    print(msg)
+
+def interface_devolucao(sistema: Biblioteca):
+    clear()
+    print('---------------- DEVOLUÇÃO LIVRO -------------------')
+
+    while True:
+        id_livro = input('Digite o ID do livro alugado:')
+
+        if not id_livro.isdigit():
+            print('Erro: Digite apenas números para os IDs!')
+            continue
+
+        break
+
+    msg = sistema.devolver_livro(int(id_livro))
+    print(msg)
+
+   
+def exibir_emprestimos_ativos(sistema: Biblioteca):
+    clear()
+    print('---------------- MEUS EMPRÉSTIMOS ATIVOS ----------------')
+
+    while True:
+        id_usuario = input('Digite seu ID:')
+
+        if not id_usuario.isdigit():
+            print('Erro: Digite apenas números para os IDs!')
+            continue
+
+        break
+
+    emprestimos = sistema.buscar_emprestimo_id_usuario(int(id_usuario))
+    for emprestimo in emprestimos:
+        print(emprestimo)
+    
+    
+    
+
 menus={
     "1":interface_cadastrar_usuario,
     "2":interface_locacao,
@@ -60,11 +98,13 @@ menus={
 }
 
 def executar_menu(sistema):
+    clear()
     while True:
+
         print('1. Cadastrar usuário')
         print('2. Locar Livro')
         print('3. Devolução')
-        print('4. Exibir Empréstimos Ativos')
+        print('4. Exibir Meus Empréstimos Ativos')
 
 
         opcao=input('Escolha uma opção:')
